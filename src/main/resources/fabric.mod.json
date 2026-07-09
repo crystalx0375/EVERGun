@@ -2,16 +2,17 @@
 	"schemaVersion": 1,
 	"id": "evergun",
 	"version": "${version}",
-	"name": "EVERgun",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "EVERGun",
+	"description": "A simple mod which adds an arrow gun into the game with 2 new vanilla enchantments",
 	"authors": [
-		"Me!"
+        "EVER2east", "Crystal"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://modrinth.com/project/evergun",
+        "sources": "https://github.com/crystalx375/EVERGun",
+        "issues": "https://github.com/crystalx375/EVERGun/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/evergun/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -20,7 +21,10 @@
 		],
 		"client": [
 			"crystal.evergun.client.EVERgunClient"
-		]
+		],
+        "fabric-datagen": [
+          "crystal.evergun.DataGen"
+        ]
 	},
 	"mixins": [
 		"evergun.mixins.json",
@@ -30,8 +34,8 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.19.3",
-		"minecraft": "~1.21.1",
+		"fabricloader": ">=0.16.10",
+		"minecraft": ">=1.21 <=1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
