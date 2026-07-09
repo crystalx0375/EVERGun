@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "evergun",
 	"version": "${version}",
-	"name": "EVERgun",
+	"name": "EVERGun",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -11,7 +11,7 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/evergun/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -20,7 +20,10 @@
 		],
 		"client": [
 			"crystal.evergun.client.EVERgunClient"
-		]
+		],
+        "fabric-datagen": [
+          "crystal.evergun.DataGen"
+        ]
 	},
 	"mixins": [
 		"evergun.mixins.json",
@@ -30,8 +33,8 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.19.3",
-		"minecraft": "~1.21.1",
+		"fabricloader": ">=0.16.3",
+		"minecraft": ">=1.21 <=1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
