@@ -32,6 +32,8 @@ public class CustomTag extends FabricTagProvider.ItemTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(CROSSBOWS).add(Items.CROSSBOW);
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("minecraft", "enchantable/crossbow"))).add(Settings.GUN);
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("minecraft", "enchantable/bow"))).add(Settings.GUN);
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("minecraft", "enchantable/durability"))).add(Settings.GUN);
         getOrCreateTagBuilder(EVERGUN_COMPATIBLE).add(Settings.GUN);
     }
 }
