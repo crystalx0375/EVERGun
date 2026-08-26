@@ -1,5 +1,12 @@
+
 {
   "item.evergun.evergun": "Самостріл",
   "enchantment.evergun.frost":  "Сповільнення",
-  "enchantment.evergun.decay": "Тління"
+  "enchantment.evergun.decay": "Тління",
+
+  "item.evergun.potiongun": "Зіллємет",
+  "enchantment.evergun.catalyst":  "Каталізатор",
+  "enchantment.evergun.shrapnel": "Шрапнель",
+  "enchantment.evergun.quick_shot": "Швидкостріл",
+  "enchantment.evergun.magazine_expansion": "Резерв"
 }

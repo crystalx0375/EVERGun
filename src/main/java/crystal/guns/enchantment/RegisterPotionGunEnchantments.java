@@ -72,7 +72,7 @@ public class RegisterPotionGunEnchantments {
                                     1,
                                     Enchantment.leveledCost(10, 8),
                                     Enchantment.leveledCost(20, 8),
-                                    4,
+                                    5,
                                     AttributeModifierSlot.MAINHAND)
                     )
                     .exclusiveSet(enchantmentRegistry.getOrThrow(TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of("potiongun", "incompatible_with_others"))))
