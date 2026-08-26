@@ -69,7 +69,7 @@ public class RegisterPotionGunEnchantments {
                             Enchantment.definition(
                                     itemRegistry.getOrThrow(itemTagKey),
                                     2,
-                                    2,
+                                    1,
                                     Enchantment.leveledCost(10, 8),
                                     Enchantment.leveledCost(20, 8),
                                     4,

@@ -50,7 +50,7 @@ public class HeldItemRendererMixin {
 
     @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
     private boolean isCharged(ItemStack stack) {
-        if (stack.getItem() instanceof CreateEVERGun) {
+        if (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun) {
             final int magazine = getMagazine(stack);
             final var client = MinecraftClient.getInstance();
             if (client.player != null && client.player.isUsingItem() && client.player.getActiveItem() == stack) {
@@ -64,7 +64,7 @@ public class HeldItemRendererMixin {
     // Setting fake map for 2 hand when gun is charged
     @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean isGun(ItemStack stack, Item item) {
-        if (item == Items.CROSSBOW && (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun)) {
+        if (Items.CROSSBOW == item && (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun)) {
             return true;
         }
         return stack.isOf(item);
