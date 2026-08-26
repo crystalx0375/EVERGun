@@ -1,5 +1,12 @@
 {
   "item.evergun.evergun": "Стреломет",
   "enchantment.evergun.frost":  "Замедление",
-  "enchantment.evergun.decay": "Разложение"
+  "enchantment.evergun.decay": "Разложение",
+
+  "item.evergun.potiongun": "Зельемет",
+  "enchantment.evergun.catalyst":  "Катализатор",
+  "enchantment.evergun.shrapnel": "Шрапнель",
+  "enchantment.evergun.volley": "Залп",
+  "enchantment.evergun.quick_shot": "Скорострел",
+  "enchantment.evergun.magazine_expansion": "Ещё чуть-чуть"
 }

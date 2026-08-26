@@ -1,18 +1,18 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.evergun.decay"
+    "translate": "enchantment.evergun.magazine_expansion"
   },
+  "exclusive_set": "#potiongun:incompatible_with_others",
   "max_cost": {
     "base": 20,
     "per_level_above_first": 8
   },
-  "max_level": 1,
+  "max_level": 2,
   "min_cost": {
     "base": 10,
     "per_level_above_first": 8
   },
-  "primary_items": "#evergun:enchantable/compatible",
   "slots": [
     "mainhand"
   ],

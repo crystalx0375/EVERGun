@@ -1,7 +1,7 @@
 package crystal.evergun.client.mixin;
 
-import crystal.evergun.register.EVERGunItem;
-import crystal.evergun.util.SetNbt;
+import crystal.guns.evergun.CreateEVERGun;
+import crystal.guns.potiongun.CreatePotionGun;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -16,9 +16,11 @@ import net.minecraft.util.math.RotationAxis;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static crystal.guns.util.nbt.GutState.getAnimation;
+import static crystal.guns.util.nbt.GutState.getMagazine;
 
 @Mixin(HeldItemRenderer.class)
 public class HeldItemRendererMixin {
@@ -27,8 +29,8 @@ public class HeldItemRendererMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V")
     )
     private void rotateGunOnReload(AbstractClientPlayerEntity player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        if (item.getItem() instanceof EVERGunItem && player.isUsingItem() && player.getActiveItem() == item) {
-            float animationProgress = SetNbt.getAnimation(item);
+        if ((item.getItem() instanceof CreateEVERGun || item.getItem() instanceof CreatePotionGun) && player.isUsingItem() && player.getActiveItem() == item) {
+            float animationProgress = getAnimation(item);
             if (animationProgress == 0.0F) {
                 animationProgress = 0.01F;
             }
@@ -46,13 +48,10 @@ public class HeldItemRendererMixin {
         }
     }
 
-    @ModifyVariable(method = "renderFirstPersonItem", at = @At("HEAD"), argsOnly = true)
-    private ItemStack treatGunAsCrossbow(ItemStack item) { return item; }
-
     @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
     private boolean isCharged(ItemStack stack) {
-        if (stack.getItem() instanceof EVERGunItem) {
-            final int magazine = SetNbt.getMagazine(stack);
+        if (stack.getItem() instanceof CreateEVERGun) {
+            final int magazine = getMagazine(stack);
             final var client = MinecraftClient.getInstance();
             if (client.player != null && client.player.isUsingItem() && client.player.getActiveItem() == stack) {
                 return magazine >= 6;
@@ -62,9 +61,10 @@ public class HeldItemRendererMixin {
         return CrossbowItem.isCharged(stack);
     }
 
+    // Setting fake map for 2 hand when gun is charged
     @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean isGun(ItemStack stack, Item item) {
-        if (item == Items.CROSSBOW && stack.getItem() instanceof EVERGunItem) {
+        if (item == Items.CROSSBOW && (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun)) {
             return true;
         }
         return stack.isOf(item);

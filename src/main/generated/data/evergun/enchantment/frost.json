@@ -12,10 +12,10 @@
     "base": 10,
     "per_level_above_first": 8
   },
-  "primary_items": "#evergun:enchantable/evergun_compatible",
+  "primary_items": "#evergun:enchantable/compatible",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#evergun:enchantable/evergun_compatible",
+  "supported_items": "#evergun:enchantable/compatible",
   "weight": 2
 }

@@ -1,21 +1,21 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.evergun.decay"
+    "translate": "enchantment.evergun.quick_shot"
   },
+  "exclusive_set": "#potiongun:incompatible_with_others",
   "max_cost": {
     "base": 20,
     "per_level_above_first": 8
   },
-  "max_level": 1,
+  "max_level": 5,
   "min_cost": {
     "base": 10,
     "per_level_above_first": 8
   },
-  "primary_items": "#evergun:enchantable/compatible",
   "slots": [
     "mainhand"
   ],
   "supported_items": "#evergun:enchantable/compatible",
-  "weight": 2
+  "weight": 5
 }

@@ -5,7 +5,7 @@
 	"name": "EVERGun",
 	"description": "A simple mod which adds an arrow gun into the game with 2 new vanilla enchantments",
 	"authors": [
-        "EVER2east", "Crystal"
+        "EVER2east", "Crystal", "lowdefqwop"
 	],
 	"contact": {
         "homepage": "https://modrinth.com/project/evergun",
@@ -17,13 +17,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"crystal.evergun.EVERgun"
+          "crystal.guns.Guns"
 		],
 		"client": [
 			"crystal.evergun.client.EVERgunClient"
 		],
         "fabric-datagen": [
-          "crystal.evergun.DataGen"
+          "crystal.guns.datagen.DataGen"
         ]
 	},
 	"mixins": [
