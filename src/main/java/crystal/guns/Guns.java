@@ -2,10 +2,10 @@ package crystal.guns;
 
 import crystal.guns.evergun.EverGunSettings;
 import crystal.guns.potiongun.PotionGunSettings;
+import crystal.guns.trades.CreateVillagerTrade;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,7 @@ public class Guns implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+        CreateVillagerTrade.createTrades();
         final Item evergun = EverGunSettings.GUN;
         final Item potiongun = PotionGunSettings.GUN;
 
@@ -24,6 +25,9 @@ public class Guns implements ModInitializer {
             itemGroup.add(potiongun);
         });
 		LOGGER.info("Loading Guns");
+
+
+
     }
 
 	public static Identifier id(String path) {

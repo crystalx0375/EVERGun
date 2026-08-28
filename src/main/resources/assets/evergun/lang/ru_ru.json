@@ -1,11 +1,11 @@
 {
   "item.evergun.evergun": "Стреломет",
-  "enchantment.evergun.frost":  "Замедление",
-  "enchantment.evergun.decay": "Разложение",
+  "enchantment.evergun.frost":  "§3амедление",
+  "enchantment.evergun.decay": "§8Разложение",
 
   "item.evergun.potiongun": "Зельемет",
-  "enchantment.evergun.catalyst":  "Катализатор",
-  "enchantment.evergun.shrapnel": "Шрапнель",
-  "enchantment.evergun.quick_shot": "Скорострел",
-  "enchantment.evergun.magazine_expansion": "Резерв"
+  "enchantment.evergun.catalyst":  "§7Катализатор",
+  "enchantment.evergun.shrapnel": "§2Шрапнель",
+  "enchantment.evergun.quick_shot": "§9Скорострел",
+  "enchantment.evergun.magazine_expansion": "§eРезерв"
 }

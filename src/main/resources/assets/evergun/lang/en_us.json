@@ -1,11 +1,11 @@
 {
   "item.evergun.evergun": "EVERGun",
-  "enchantment.evergun.frost":  "Frostbite",
-  "enchantment.evergun.decay": "Decay",
+  "enchantment.evergun.frost":  "§3Frostbite",
+  "enchantment.evergun.decay": "§8Decay",
 
   "item.evergun.potiongun": "Potion Gun",
-  "enchantment.evergun.catalyst":  "Catalyst",
-  "enchantment.evergun.shrapnel": "Shrapnel",
-  "enchantment.evergun.quick_shot": "Quick Shot",
-  "enchantment.evergun.magazine_expansion": "Reserve"
+  "enchantment.evergun.catalyst":  "§7Catalyst",
+  "enchantment.evergun.shrapnel": "§2Shrapnel",
+  "enchantment.evergun.quick_shot": "§9Quick Shot",
+  "enchantment.evergun.magazine_expansion": "§eReserve"
 }

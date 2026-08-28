@@ -9,8 +9,8 @@
 	],
 	"contact": {
         "homepage": "https://modrinth.com/project/evergun",
-        "sources": "https://github.com/crystalx375/EVERGun",
-        "issues": "https://github.com/crystalx375/EVERGun/issues"
+        "sources": "https://github.com/crystalx0375/EVERGun",
+        "issues": "https://github.com/crystalx0375/EVERGun/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/evergun/icon.png",
