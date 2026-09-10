@@ -19,6 +19,9 @@
 		"main": [
           "crystal.guns.Guns"
 		],
+        "modmenu": [
+          "crystal.evergun.client.config.ModMenu"
+        ],
 		"client": [
 			"crystal.evergun.client.EVERgunClient"
 		],

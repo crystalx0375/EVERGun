@@ -7,5 +7,19 @@
   "enchantment.evergun.catalyst":  "§7Catalyst",
   "enchantment.evergun.shrapnel": "§2Shrapnel",
   "enchantment.evergun.quick_shot": "§9Quick Shot",
-  "enchantment.evergun.magazine_expansion": "§eReserve"
+  "enchantment.evergun.magazine_expansion": "§eReserve",
+
+  "enchantment.evergun.disabled": "[Disabled]",
+
+  "evergun.config.title": "ENCHANTMENTS",
+
+  "evergun.config.everganus" : "EVERGun",
+  "evergun.config.decay" : "§8Decay",
+  "evergun.config.frostbite" : "§3Frostbite",
+
+  "evergun.config.potionganus" : "Potion Gun",
+  "evergun.config.catalyst" : "§7Catalyst",
+  "evergun.config.shrapnel" : "§2Shrapnel",
+  "evergun.config.quick_shot" : "§9Quick Shot",
+  "evergun.config.magazine_expansion" : "§eReserve"
 }

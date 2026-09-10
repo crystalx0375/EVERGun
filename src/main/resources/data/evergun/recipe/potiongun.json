@@ -1,31 +1,30 @@
 {
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
-
     "pattern": [
-        "#N#",
-        "TRT",
-        "S#S"
+        "T#o",
+        "/N#",
+        " /T"
     ],
     "key": {
+        "T": {
+            "item": "minecraft:copper_ingot"
+        },
         "#": {
-            "item": "minecraft:echo_shard"
+            "item": "minecraft:redstone"
+        },
+        "o": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "/": {
+            "item": "minecraft:blaze_rod"
         },
         "N": {
             "item": "minecraft:nether_star"
-        },
-        "T": {
-            "item": "minecraft:tripwire_hook"
-        },
-        "R": {
-            "item": "minecraft:redstone"
-        },
-        "S": {
-            "item": "minecraft:string"
         }
     },
     "result": {
-      "count": 1,
-      "id": "evergun:potiongun"
+        "count": 1,
+        "id": "evergun:potiongun"
     }
 }

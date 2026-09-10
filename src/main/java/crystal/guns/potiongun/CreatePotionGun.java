@@ -1,5 +1,6 @@
 package crystal.guns.potiongun;
 
+import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.util.GetListFromStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -57,24 +58,26 @@ public class CreatePotionGun extends Item {
         final ItemStack stack = user.getStackInHand(hand);
 
         final var registry = world.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-        final int magExpLevel = EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack);
+        int magExpLevel = EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack);
 
-        final int ammo = getMagazine(stack);
-        final int maxCapacity = 4 + magExpLevel;
+        int ammo = getMagazine(stack);
 
-        final boolean canReload = ammo < maxCapacity;
-        final boolean wantsToReload = ammo == 0 || (ammo > 0 && user.isSneaking() && canReload);
+         int maxCapacity = 4 + (EnchantmentsConfig.get().magazineExpansion ? magExpLevel: 0);
+
+         boolean canReload = ammo < maxCapacity;
+         boolean wantsToReload = ammo == 0 || (ammo > 0 && user.isSneaking() && canReload);
 
         if (wantsToReload) {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(stack);
         } else if (ammo > 0) {
-            final int quickShotLevel = EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.QUICK_SHOT), stack);
+            final int quickShotLevel = EnchantmentsConfig.get().quickShot
+                    ? EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.QUICK_SHOT), stack) : 0;
             
             final ItemStack potionToShoot = remove(stack, world.getRegistryManager(), 1);
             setMagazine(stack, ammo - 1);
             shoot(world, user, stack, potionToShoot);
-            user.getItemCooldownManager().set(stack.getItem(), Math.max(1, 5 - quickShotLevel));
+            user.getItemCooldownManager().set(stack.getItem(), 8 - quickShotLevel);
 
             return TypedActionResult.consume(stack);
         }
@@ -121,7 +124,9 @@ public class CreatePotionGun extends Item {
                         .append(ScreenTexts.SPACE)
                         .append(projectileStack.toHoverableText()).formatted(Formatting.GRAY)
                         .append(ScreenTexts.SPACE)
-                        .append((Text.literal(magazine + "/" + (4 + EnchantmentHelper.getLevel(Objects.requireNonNull(context.getRegistryLookup()).getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack)))).formatted(Formatting.AQUA))
+                        .append((Text.literal(magazine + "/" + (4 +
+                                (EnchantmentsConfig.get().magazineExpansion
+                                ? EnchantmentHelper.getLevel(Objects.requireNonNull(context.getRegistryLookup()).getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack): 0)))).formatted(Formatting.AQUA))
                 );
             }
         }

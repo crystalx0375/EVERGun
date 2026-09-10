@@ -40,7 +40,7 @@ public class Animation {
         });
     }
 
-    private static void regisrerPotionGun() {
+    private static void registerPotionGun() {
         ModelPredicateProviderRegistry.register(PotionGunSettings.GUN, Guns.id("animation"), (stack, world, entity, seed) -> {
             final NbtComponent nbtComponent = stack.get(DataComponentTypes.CUSTOM_DATA);
             if (nbtComponent != null) {
@@ -73,6 +73,6 @@ public class Animation {
 
     public static void register() {
         registerEVERGun();
-        regisrerPotionGun();
+        registerPotionGun();
     }
 }

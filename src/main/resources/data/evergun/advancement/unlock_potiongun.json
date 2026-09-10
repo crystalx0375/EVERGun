@@ -11,32 +11,32 @@
         ]
       }
     },
-    "has_string": {
+    "has_blaze_rod": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "minecraft:string"
+            "items": "minecraft:blaze_rod"
           }
         ]
       }
     },
-    "has_hook": {
+    "has_copper_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "minecraft:tripwire_hook"
+            "items": "minecraft:copper_ingot"
           }
         ]
       }
     },
-    "has_echo": {
+    "has_amethyst_shard": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "minecraft:echo_shard"
+            "items": "minecraft:amethyst_shard"
           }
         ]
       }
@@ -55,9 +55,9 @@
   "requirements": [
     [
       "has_redstone",
-      "has_string",
-      "has_hook",
-      "has_echo",
+      "has_blaze_rod",
+      "has_copper_ingot",
+      "has_amethyst_shard",
       "has_star"
     ]
   ],

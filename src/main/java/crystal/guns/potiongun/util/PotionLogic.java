@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -50,8 +51,37 @@ public class PotionLogic {
     protected static void setExtraDuration(final ItemStack potionStack, final int catalystLevel) {
         final PotionContentsComponent contents = potionStack.get(DataComponentTypes.POTION_CONTENTS);
         if (contents == null) return;
-
         final float multiplierBase = 1 + catalystLevel * 0.1F;
+        List<StatusEffectInstance> effects;
+
+        if (potionStack.isOf(Items.LINGERING_POTION)) {
+            effects = setLingeringPotion(contents, multiplierBase);
+        } else {
+            effects = setPotion(contents, multiplierBase);
+        }
+        final PotionContentsComponent newContents = new PotionContentsComponent(Optional.empty(), contents.customColor(), effects);
+        potionStack.set(DataComponentTypes.POTION_CONTENTS, newContents);
+    }
+
+    private static List<StatusEffectInstance> setLingeringPotion(final PotionContentsComponent contents, final float multiplierBase) {
+        final List<StatusEffectInstance> effects = new ArrayList<>();
+
+        for (StatusEffectInstance effect : contents.getEffects()) {
+            effects.add(
+                    new StatusEffectInstance(
+                            effect.getEffectType(),
+                            (int) (effect.getDuration() * 0.25 * multiplierBase),
+                            effect.getAmplifier(),
+                            effect.isAmbient(),
+                            effect.shouldShowParticles(),
+                            effect.shouldShowIcon()
+                    )
+            );
+        }
+        return effects;
+    }
+
+    private static List<StatusEffectInstance> setPotion(final PotionContentsComponent contents, final float multiplierBase) {
         final List<StatusEffectInstance> effects = new ArrayList<>();
 
         for (StatusEffectInstance effect : contents.getEffects()) {
@@ -66,7 +96,6 @@ public class PotionLogic {
                     )
             );
         }
-        final PotionContentsComponent newContents = new PotionContentsComponent(Optional.empty(), contents.customColor(), effects);
-        potionStack.set(DataComponentTypes.POTION_CONTENTS, newContents);
+        return effects;
     }
 }

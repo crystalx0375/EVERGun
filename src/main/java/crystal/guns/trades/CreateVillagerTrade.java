@@ -1,5 +1,6 @@
 package crystal.guns.trades;
 
+import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.enchantment.EnchantmentKeys;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
@@ -27,9 +28,9 @@ public class CreateVillagerTrade {
 
             //region DECAY
 
-            factories.add((entity, random) -> {
+            factories.add((entity, random ) -> {
 
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().decay || random.nextFloat() >= 0.02) {
                     return null;
                 }
                 final ItemStack decay = EnchantedBookItem.forEnchantment(
@@ -50,7 +51,7 @@ public class CreateVillagerTrade {
             //region Frostbite
             factories.add((entity, random) -> {
 
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().frostbite || random.nextFloat() >= 0.02) {
                     return null;
                 }
 
@@ -74,7 +75,7 @@ public class CreateVillagerTrade {
 
                 final int level = random.nextBetween(1, 4);
 
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().catalyst || random.nextFloat() >= 0.02) {
                     return null;
                 }
                 final ItemStack catalyst = EnchantedBookItem.forEnchantment(
@@ -95,7 +96,7 @@ public class CreateVillagerTrade {
             factories.add((entity, random) -> {
                 final int level = random.nextBetween(1, 3);
 
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().shrapnel || random.nextFloat() >= 0.02) {
                     return null;
                 }
 
@@ -117,7 +118,7 @@ public class CreateVillagerTrade {
             //region Quick Shot
             factories.add((entity, random) -> {
             final int level = random.nextBetween(1, 5);
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().quickShot || random.nextFloat() >= 0.02) {
                     return null;
                 }
 
@@ -139,7 +140,7 @@ public class CreateVillagerTrade {
             //region Reserve
             factories.add((entity, random) -> {
 
-                if (random.nextFloat() >= 0.02) {
+                if (!EnchantmentsConfig.get().magazineExpansion || random.nextFloat() >= 0.02) {
                     return null;
                 }
 

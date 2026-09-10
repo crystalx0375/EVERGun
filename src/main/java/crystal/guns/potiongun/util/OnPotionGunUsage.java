@@ -1,5 +1,6 @@
 package crystal.guns.potiongun.util;
 
+import crystal.guns.config.EnchantmentsConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import crystal.guns.enchantment.EnchantmentKeys;
@@ -22,12 +23,14 @@ public class OnPotionGunUsage {
 
     public static void onUsage(@NotNull final World world, final LivingEntity user, final PlayerEntity player, final ItemStack stack, final int remainingUseTicks) {
         final var registry = world.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+
         final int quickChargeLevel = EnchantmentHelper.getLevel(registry.getOrThrow(Enchantments.QUICK_CHARGE), stack);
 
-        final int currentDel = 20 - (quickChargeLevel * 2);
+        final int currentDel = 20 - quickChargeLevel;
         if ((remainingUseTicks - 1) % currentDel == 0) {
             final int magazine = getMagazine(stack);
-            final int maxCapacity = 4 + EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack);
+            final int maxCapacity = (EnchantmentsConfig.get().magazineExpansion
+                    ? EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.MAGAZINE_EXPANSION), stack) : 0) + 4;
 
             if (magazine < maxCapacity) {
                 final ItemStack potionStack = findStack(player, 1);

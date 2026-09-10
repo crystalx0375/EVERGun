@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "BipedEntityModelMixin",
-    "HeldItemRendererMixin"
+    "HeldItemRendererMixin",
+    "DisabledEnchantmentTooltipMixin"
   ],
   "injectors": {
     "defaultRequire": 1

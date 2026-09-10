@@ -1,5 +1,6 @@
 package crystal.guns.potiongun.util;
 
+import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.enchantment.EnchantmentKeys;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -25,7 +26,7 @@ public class ShootArrow {
         final int shrapnelLevel = EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.SHRAPNEL), potionGun);
         final int powerLevel = EnchantmentHelper.getLevel(registry.getOrThrow(Enchantments.POWER), potionGun);
 
-        if (catalystLevel > 0) setExtraDuration(potionStack, catalystLevel);
+        if (catalystLevel > 0 && EnchantmentsConfig.get().catalyst) setExtraDuration(potionStack, catalystLevel);
         createAndSpawnPotion(world, shooter, potionStack, shrapnelLevel, powerLevel);
 
         world.playSound(

@@ -7,5 +7,20 @@
   "enchantment.evergun.catalyst":  "§7Катализатор",
   "enchantment.evergun.shrapnel": "§2Шрапнель",
   "enchantment.evergun.quick_shot": "§9Скорострел",
-  "enchantment.evergun.magazine_expansion": "§eРезерв"
+  "enchantment.evergun.magazine_expansion": "§eРезерв",
+
+  "enchantment.evergun.disabled": "[Отключено]",
+
+  "evergun.config.title": "ЗАЧАРОВАНИЯ",
+
+  "evergun.config.everganus": "Стреломет",
+  "evergun.config.frostbite": "§3амедление",
+  "evergun.config.decay": "§8Разложение",
+
+  "evergun.config.potionganus": "Зельемет",
+  "evergun.config.catalyst": "§7Катализатор",
+  "evergun.config.shrapnel": "§2Шрапнель",
+  "evergun.config.quick_shot": "§9Скорострел",
+  "evergun.config.magazine_expansion": "§eРезерв"
+
 }

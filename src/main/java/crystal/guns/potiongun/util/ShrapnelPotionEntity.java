@@ -1,5 +1,6 @@
 package crystal.guns.potiongun.util;
 
+import crystal.guns.config.EnchantmentsConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +27,7 @@ public class ShrapnelPotionEntity extends PotionEntity {
         for (LivingEntity entity : getAllEntities()) {
             final float dist = (float) hitResult.getPos().distanceTo(entity.getPos());
 
-            float damage = 10 + shrapnelLevel * 4 - dist;
+            float damage = (10 + (EnchantmentsConfig.get().shrapnel ? shrapnelLevel : 0) * 4 - dist) ;
             if (entity instanceof PlayerEntity) {
                 damage *= 0.1363636364F;
             }

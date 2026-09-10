@@ -1,5 +1,6 @@
 package crystal.guns.evergun.util;
 
+import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.enchantment.EnchantmentKeys;
 import crystal.guns.Guns;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -30,10 +31,10 @@ public class ShootArrow {
         final int witherLevel = EnchantmentHelper.getLevel(registry.getOrThrow(EnchantmentKeys.DECAY), gun);
 
         if (projectile instanceof ArrowEntity) {
-            if (frostLevel > 0) {
+            if (frostLevel > 0 && EnchantmentsConfig.get().frostbite)  {
                 projectile.getCommandTags().add("frost_" + frostLevel);
             }
-            if (witherLevel > 0) {
+            if (witherLevel > 0 && EnchantmentsConfig.get().decay) {
                 projectile.getCommandTags().add("wither_" + witherLevel);
             }
             if (punchLevel > 0) {
