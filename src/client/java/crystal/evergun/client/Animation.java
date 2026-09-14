@@ -63,7 +63,7 @@ public class Animation {
                 final var nbt = nbtComponent.copyNbt();
                 final int ammo = nbt.getInt("magazine");
                 final float animation = nbt.getFloat("animation");
-                return (float) (ammo + animation * 0.1);
+                return (ammo + animation) /4.0F;
             }
             return 0.0F;
         });

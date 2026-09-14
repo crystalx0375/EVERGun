@@ -24,49 +24,197 @@ import static crystal.guns.util.nbt.GutState.getMagazine;
 
 @Mixin(HeldItemRenderer.class)
 public class HeldItemRendererMixin {
+
     @Inject(
             method = "renderFirstPersonItem",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+            )
     )
-    private void rotateGunOnReload(AbstractClientPlayerEntity player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        if ((item.getItem() instanceof CreateEVERGun || item.getItem() instanceof CreatePotionGun) && player.isUsingItem() && player.getActiveItem() == item) {
+    private void rotateGunOnReload(
+            AbstractClientPlayerEntity player,
+            float tickDelta,
+            float pitch,
+            Hand hand,
+            float swingProgress,
+            ItemStack item,
+            float equipProgress,
+            MatrixStack matrices,
+            VertexConsumerProvider vertexConsumers,
+            int light,
+            CallbackInfo ci
+    ) {
+
+        /*
+         * ==========================================
+         * PotionGun
+         * ==========================================
+         */
+
+        if (item.getItem() instanceof CreatePotionGun
+                && player.isUsingItem()
+                && player.getActiveItem() == item) {
+
+            float animationProgress = Math.abs(getAnimation(item));
+
+            if (animationProgress >= 0.0F) {
+
+                final int cf = hand == Hand.MAIN_HAND ? 1 : -1;
+
+                matrices.translate(
+                        -0.3F * cf,
+                        -0.08F,
+                        0.1F
+                );
+
+                matrices.multiply(
+                        RotationAxis.POSITIVE_X.rotationDegrees(
+                                -18F
+                        )
+                );
+
+                matrices.multiply(
+                        RotationAxis.POSITIVE_Y.rotationDegrees(
+                                20F
+                        )
+                );
+
+                matrices.multiply(
+                        RotationAxis.POSITIVE_Z.rotationDegrees(
+                                5F
+                        )
+                );
+            }
+        }
+
+
+        /*
+         * ==========================================
+         * EVERGun
+         * ==========================================
+         *
+         * Оставляем старую анимацию без изменений.
+         */
+
+        if (item.getItem() instanceof CreateEVERGun
+                && player.isUsingItem()
+                && player.getActiveItem() == item) {
+
             float animationProgress = getAnimation(item);
+
             if (animationProgress == 0.0F) {
                 animationProgress = 0.01F;
             }
 
-            if (animationProgress > 0) {
+            if (animationProgress >= 0.0F) {
+
                 final int cf = hand == Hand.MAIN_HAND ? 1 : -1;
+
                 matrices.push();
 
-                matrices.translate(-0.3F * cf, -0.08F, 0.1F);
+                matrices.translate(
+                        -0.3F * cf,
+                        -0.08F,
+                        0.1F
+                );
 
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-18F));
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(20F * cf));
-                matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-5F * cf));
+                matrices.multiply(
+                        RotationAxis.POSITIVE_X.rotationDegrees(-18F)
+                );
+
+                matrices.multiply(
+                        RotationAxis.POSITIVE_Y.rotationDegrees(20F * cf)
+                );
+
+                matrices.multiply(
+                        RotationAxis.POSITIVE_Z.rotationDegrees(-5F * cf)
+                );
             }
         }
     }
 
-    @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
+
+    /*
+     * Позволяет HeldItemRenderer считать наши пушки заряженным
+     * так же, как ванильный арбалет.
+     */
+    @Redirect(
+            method = "renderFirstPersonItem",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"
+            )
+    )
     private boolean isCharged(ItemStack stack) {
-        if (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun) {
+
+        /*
+         * EVERGun — максимум 6
+         */
+        if (stack.getItem() instanceof CreateEVERGun) {
+
             final int magazine = getMagazine(stack);
+
             final var client = MinecraftClient.getInstance();
-            if (client.player != null && client.player.isUsingItem() && client.player.getActiveItem() == stack) {
+
+            if (client.player != null
+                    && client.player.isUsingItem()
+                    && client.player.getActiveItem() == stack) {
+
                 return magazine >= 6;
             }
+
             return magazine > 0;
         }
+
+
+        /*
+         * PotionGun — максимум 4
+         */
+        if (stack.getItem() instanceof CreatePotionGun) {
+
+            final int magazine = getMagazine(stack);
+
+            final var client = MinecraftClient.getInstance();
+
+            if (client.player != null
+                    && client.player.isUsingItem()
+                    && client.player.getActiveItem() == stack) {
+
+                return magazine >= 4;
+            }
+            if (magazine > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         return CrossbowItem.isCharged(stack);
     }
 
-    // Setting fake map for 2 hand when gun is charged
-    @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+
+    /*
+     * Заставляем HeldItemRenderer использовать
+     * двухручную модель арбалета для наших пушек.
+     */
+    @Redirect(
+            method = "renderFirstPersonItem",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"
+            )
+    )
     private boolean isGun(ItemStack stack, Item item) {
-        if (Items.CROSSBOW == item && (stack.getItem() instanceof CreateEVERGun || stack.getItem() instanceof CreatePotionGun)) {
+
+        if (Items.CROSSBOW == item
+                && (stack.getItem() instanceof CreateEVERGun
+                || stack.getItem() instanceof CreatePotionGun)) {
+
             return true;
         }
+
         return stack.isOf(item);
     }
 }

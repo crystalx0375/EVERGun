@@ -1,17 +1,135 @@
 {
   "parent": "minecraft:item/crossbow",
   "textures": {
-    "layer0": "evergun:item/potiongun_standby"
+    "layer0": "evergun:item/potiongun_static0"
   },
   "overrides": [
-    { "predicate": { "potiongun:animation": 0.4 }, "model": "evergun:item/potiongun_pulling_0" },
-    { "predicate": { "potiongun:animation": 0.7 }, "model": "evergun:item/potiongun_pulling_1" },
-    { "predicate": { "potiongun:animation": 0.9 }, "model": "evergun:item/potiongun_pulling_2" },
+    {
+      "predicate": {
+        "evergun:load_state": 0.05
+      },
+      "model": "evergun:item/potiongun_animation0_0"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.10
+      },
+      "model": "evergun:item/potiongun_animation0_1"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.15
+      },
+      "model": "evergun:item/potiongun_animation0_2"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.20
+      },
+      "model": "evergun:item/potiongun_animation0_3"
+    },
 
-    { "predicate": { "potiongun:ammo": 1.0 }, "model": "evergun:item/potiongun_arrow" },
+    {
+      "predicate": {
+        "evergun:load_state": 0.25
+      },
+      "model": "evergun:item/potiongun_static1"
+    },
 
-    { "predicate": { "potiongun:animation_with_arrow": 0.4 }, "model": "evergun:item/potiongun_arrow_pulling_0" },
-    { "predicate": { "potiongun:animation_with_arrow": 0.7 }, "model": "evergun:item/potiongun_arrow_pulling_1" },
-    { "predicate": { "potiongun:animation_with_arrow": 0.8 }, "model": "evergun:item/potiongun_arrow_pulling_2" }
+    {
+      "predicate": {
+        "evergun:load_state": 0.30
+      },
+      "model": "evergun:item/potiongun_animation1_0"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.35
+      },
+      "model": "evergun:item/potiongun_animation1_1"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.40
+      },
+      "model": "evergun:item/potiongun_animation1_2"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.45
+      },
+      "model": "evergun:item/potiongun_animation1_3"
+    },
+
+    {
+      "predicate": {
+        "evergun:load_state": 0.50
+      },
+      "model": "evergun:item/potiongun_static2"
+    },
+
+    {
+      "predicate": {
+        "evergun:load_state": 0.55
+      },
+      "model": "evergun:item/potiongun_animation2_0"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.60
+      },
+      "model": "evergun:item/potiongun_animation2_1"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.65
+      },
+      "model": "evergun:item/potiongun_animation2_2"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.70
+      },
+      "model": "evergun:item/potiongun_animation2_3"
+    },
+
+    {
+      "predicate": {
+        "evergun:load_state": 0.75
+      },
+      "model": "evergun:item/potiongun_static3"
+    },
+
+    {
+      "predicate": {
+        "evergun:load_state": 0.80
+      },
+      "model": "evergun:item/potiongun_animation3_0"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.85
+      },
+      "model": "evergun:item/potiongun_animation3_1"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.90
+      },
+      "model": "evergun:item/potiongun_animation3_2"
+    },
+    {
+      "predicate": {
+        "evergun:load_state": 0.95
+      },
+      "model": "evergun:item/potiongun_animation3_3"
+    },
+
+    {
+      "predicate": {
+        "evergun:load_state": 1.0
+      },
+      "model": "evergun:item/potiongun_static4"
+    }
   ]
 }
