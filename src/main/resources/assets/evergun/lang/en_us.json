@@ -14,12 +14,12 @@
   "evergun.config.title": "ENCHANTMENTS",
 
   "evergun.config.everganus" : "EVERGun",
-  "evergun.config.decay" : "§8Decay",
-  "evergun.config.frostbite" : "§3Frostbite",
+  "evergun.config.decay" : "Enable §8Decay",
+  "evergun.config.frostbite" : "Enable §3Frostbite",
 
   "evergun.config.potionganus" : "Potion Gun",
-  "evergun.config.catalyst" : "§7Catalyst",
-  "evergun.config.shrapnel" : "§2Shrapnel",
-  "evergun.config.quick_shot" : "§9Quick Shot",
-  "evergun.config.magazine_expansion" : "§eReserve"
+  "evergun.config.catalyst" : "Enable §7Catalyst",
+  "evergun.config.shrapnel" : "Enable §2Shrapnel",
+  "evergun.config.quick_shot" : "Enable §9Quick Shot",
+  "evergun.config.magazine_expansion" : "Enable §eReserve"
 }

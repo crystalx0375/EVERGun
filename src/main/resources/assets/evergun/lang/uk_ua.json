@@ -14,12 +14,12 @@
   "evergun.config.title": "ЗАЧАРУВАННЯ",
 
   "evergun.config.everganus": "Самостріл",
-  "evergun.config.frostbite": "§3Сповільнення",
-  "evergun.config.decay": "§8Тління",
+  "evergun.config.frostbite": "Уввімкнути §3Сповільнення",
+  "evergun.config.decay": "Уввімкнути §8Тління",
 
   "evergun.config.potionganus": "Зіллємет",
-  "evergun.config.catalyst": "§7Каталізатор",
-  "evergun.config.shrapnel": "§2Шрапнель",
-  "evergun.config.quick_shot": "§9Швидкостріл Shot",
-  "evergun.config.magazine_expansion": "§eРезерв"
+  "evergun.config.catalyst": "Уввімкнути §7Каталізатор",
+  "evergun.config.shrapnel": "Уввімкнути §2Шрапнель",
+  "evergun.config.quick_shot": "Уввімкнути §9Швидкостріл Shot",
+  "evergun.config.magazine_expansion": "Уввімкнути §eРезерв"
 }

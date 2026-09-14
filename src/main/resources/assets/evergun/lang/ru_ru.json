@@ -14,13 +14,13 @@
   "evergun.config.title": "ЗАЧАРОВАНИЯ",
 
   "evergun.config.everganus": "Стреломет",
-  "evergun.config.frostbite": "§3амедление",
-  "evergun.config.decay": "§8Разложение",
+  "evergun.config.frostbite": "Включить §3амедление",
+  "evergun.config.decay": "Включить §8Разложение",
 
   "evergun.config.potionganus": "Зельемет",
-  "evergun.config.catalyst": "§7Катализатор",
-  "evergun.config.shrapnel": "§2Шрапнель",
-  "evergun.config.quick_shot": "§9Скорострел",
-  "evergun.config.magazine_expansion": "§eРезерв"
+  "evergun.config.catalyst": "Включить §7Катализатор",
+  "evergun.config.shrapnel": "Включить §2Шрапнель",
+  "evergun.config.quick_shot": "Включить §9Скорострел",
+  "evergun.config.magazine_expansion": "Включить §eРезерв"
 
 }
