@@ -44,20 +44,7 @@ public class Animation {
         ModelPredicateProviderRegistry.register(PotionGunSettings.GUN, Guns.id("animation"), (stack, world, entity, seed) -> {
             final NbtComponent nbtComponent = stack.get(DataComponentTypes.CUSTOM_DATA);
             if (nbtComponent != null) {
-                final var nbt = nbtComponent.copyNbt();
-                return nbt.getFloat("animation");
-            }
-            return 0.0F;
-        });
-
-        ModelPredicateProviderRegistry.register(PotionGunSettings.GUN, Guns.id("animation_with_arrow"), (stack, world, entity, seed) -> {
-            final NbtComponent nbtComponent = stack.get(DataComponentTypes.CUSTOM_DATA);
-            if (nbtComponent != null) {
-                final var nbt = nbtComponent.copyNbt();
-                final int a = nbt.getInt("magazine");
-                if (a > 0 && a < 6) {
-                    return nbt.getFloat("animation");
-                }
+                return nbtComponent.copyNbt().getFloat("animation");
             }
             return 0.0F;
         });
@@ -66,6 +53,17 @@ public class Animation {
             final NbtComponent nbtComponent = stack.get(DataComponentTypes.CUSTOM_DATA);
             if (nbtComponent != null) {
                 return (float) nbtComponent.copyNbt().getInt("magazine");
+            }
+            return 0.0F;
+        });
+
+        ModelPredicateProviderRegistry.register(PotionGunSettings.GUN, Guns.id("load_state"), (stack, world, entity, seed) -> {
+            final NbtComponent nbtComponent = stack.get(DataComponentTypes.CUSTOM_DATA);
+            if (nbtComponent != null) {
+                final var nbt = nbtComponent.copyNbt();
+                final int ammo = nbt.getInt("magazine");
+                final float animation = nbt.getFloat("animation");
+                return (float) (ammo + animation * 0.1);
             }
             return 0.0F;
         });
