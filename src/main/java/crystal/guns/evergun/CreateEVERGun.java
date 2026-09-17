@@ -1,5 +1,6 @@
 package crystal.guns.evergun;
 
+import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.util.GetListFromStack;
 import crystal.guns.util.nbt.GunNbt;
 import net.minecraft.entity.LivingEntity;
@@ -50,6 +51,11 @@ public class CreateEVERGun extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+
+        if (!EnchantmentsConfig.get().enableEVERgun) {
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
         final ItemStack stack = user.getStackInHand(hand);
         final int ammo = getMagazine(stack);
 

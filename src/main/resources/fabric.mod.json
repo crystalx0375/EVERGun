@@ -3,7 +3,7 @@
 	"id": "evergun",
 	"version": "${version}",
 	"name": "EVERGun",
-	"description": "A simple mod which adds an arrow gun into the game with 2 new vanilla enchantments",
+	"description": "A simple mod which adds an arrow gun into the game with 2 enchantments and potion gun with 4 enchantments",
 	"authors": [
         "EVER2east", "Crystal", "lowdefqwop"
 	],

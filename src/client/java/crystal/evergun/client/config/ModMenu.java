@@ -6,6 +6,7 @@ import crystal.guns.config.EnchantmentsConfig;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,16 +25,36 @@ public class ModMenu implements ModMenuApi {
 
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.translatable("evergun.config.title"));
+
+                .setTitle(Text.translatable("evergun.config.title").formatted(Formatting.BOLD,  Formatting.AQUA)
+                );
 
         var entryBuilder = builder.entryBuilder();
 
+        Text title = Text.translatable("evergun.config.title").formatted(Formatting.BOLD, Formatting.AQUA);
+        builder.setTitle(title);
+
         var everganus = builder.getOrCreateCategory(
-                Text.translatable("evergun.config.everganus")
+                Text.translatable("evergun.config.everganus").formatted(Formatting.BOLD)
         );
 
         var potionganus = builder.getOrCreateCategory(
-                Text.translatable("evergun.config.potionganus")
+                Text.translatable("evergun.config.potionganus").formatted(Formatting.BOLD)
+        );
+
+
+
+
+        everganus.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("evergun.config.enable_evergun"),
+                                config.enableEVERgun
+                        )
+                        .setDefaultValue(true)
+                        .setSaveConsumer(value ->
+                                changes.put("enable_evergun", value)
+                        )
+                        .build()
         );
 
         everganus.addEntry(
@@ -56,6 +77,18 @@ public class ModMenu implements ModMenuApi {
                         .setDefaultValue(true)
                         .setSaveConsumer(value ->
                                 changes.put("frostbite", value)
+                        )
+                        .build()
+        );
+
+        potionganus.addEntry(
+                entryBuilder.startBooleanToggle(
+                                Text.translatable("evergun.config.enable_potiongun"),
+                                config.enablePotiongun
+                        )
+                        .setDefaultValue(true)
+                        .setSaveConsumer(value ->
+                                changes.put("enable_potiongun", value)
                         )
                         .build()
         );

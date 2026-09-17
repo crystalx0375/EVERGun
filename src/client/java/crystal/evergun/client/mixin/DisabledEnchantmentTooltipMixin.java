@@ -1,8 +1,13 @@
 package crystal.evergun.client.mixin;
 
+import crystal.guns.Guns;
 import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.enchantment.EnchantmentKeys;
+import crystal.guns.evergun.CreateEVERGun;
+import crystal.guns.evergun.EverGunSettings;
+import crystal.guns.potiongun.PotionGunSettings;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -19,7 +24,9 @@ public class DisabledEnchantmentTooltipMixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private static void addDisabledText(
+
+        private static void addDisabledText(
+
             RegistryEntry<Enchantment> enchantment,
             int level,
             CallbackInfoReturnable<Text> cir
@@ -33,6 +40,7 @@ public class DisabledEnchantmentTooltipMixin {
                         || (enchantment.matchesKey(EnchantmentKeys.SHRAPNEL) && !config.shrapnel)
                         || (enchantment.matchesKey(EnchantmentKeys.MAGAZINE_EXPANSION) && !config.magazineExpansion)
                         || (enchantment.matchesKey(EnchantmentKeys.QUICK_SHOT) && !config.quickShot);
+
 
         if (!disabled) {
             return;
@@ -52,4 +60,7 @@ public class DisabledEnchantmentTooltipMixin {
                 cir.getReturnValue().copy().append(disabledText)
         );
     }
+
+
 }
+

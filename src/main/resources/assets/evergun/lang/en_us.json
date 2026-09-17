@@ -11,7 +11,7 @@
 
   "enchantment.evergun.disabled": "[Disabled]",
 
-  "evergun.config.title": "ENCHANTMENTS",
+  "evergun.config.title": "ENCHANTMENTS & WEAPONS",
 
   "evergun.config.everganus" : "EVERGun",
   "evergun.config.decay" : "Enable §8Decay",
@@ -21,5 +21,8 @@
   "evergun.config.catalyst" : "Enable §7Catalyst",
   "evergun.config.shrapnel" : "Enable §2Shrapnel",
   "evergun.config.quick_shot" : "Enable §9Quick Shot",
-  "evergun.config.magazine_expansion" : "Enable §eReserve"
+  "evergun.config.magazine_expansion" : "Enable §eReserve",
+
+  "evergun.config.enable_evergun": "Enable EVERgun?",
+  "evergun.config.enable_potiongun" : "Enable Potiongun?"
 }

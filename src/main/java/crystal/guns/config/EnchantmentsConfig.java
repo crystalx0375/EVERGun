@@ -18,6 +18,8 @@ public class EnchantmentsConfig {
     public final boolean shrapnel;
     public final boolean quickShot;
     public final boolean magazineExpansion;
+    public final boolean enableEVERgun;
+    public final boolean enablePotiongun;
 
 
     private EnchantmentsConfig () {
@@ -32,6 +34,8 @@ public class EnchantmentsConfig {
         shrapnel = config.getOrDefault("shrapnel", true);
         quickShot = config.getOrDefault("quick_shot", true);
         magazineExpansion = config.getOrDefault("magazine_expansion", true);
+        enableEVERgun = config.getOrDefault("enable_evergun", true);
+        enablePotiongun = config.getOrDefault("enable_potiongun", true);
 
     }
 
@@ -48,6 +52,8 @@ public class EnchantmentsConfig {
                shrapnel = true
                quick_shot = true
                magazine_expansion = true
+               enable_evergun = true
+               enable_potiongun = true
                """;
     }
 

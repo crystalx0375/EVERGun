@@ -55,6 +55,10 @@ public class CreatePotionGun extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (!EnchantmentsConfig.get().enablePotiongun) {
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
         final ItemStack stack = user.getStackInHand(hand);
 
         final var registry = world.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);

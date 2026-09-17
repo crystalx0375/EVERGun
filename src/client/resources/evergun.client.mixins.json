@@ -5,7 +5,8 @@
   "client": [
     "BipedEntityModelMixin",
     "HeldItemRendererMixin",
-    "DisabledEnchantmentTooltipMixin"
+    "DisabledEnchantmentTooltipMixin",
+    "DisabledGUN"
   ],
   "injectors": {
     "defaultRequire": 1
