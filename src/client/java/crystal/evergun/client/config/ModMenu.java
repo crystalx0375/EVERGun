@@ -15,7 +15,7 @@ public class ModMenu implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return this::createConfigScreen;
+        return EverGunConfigScreen::new;
     }
 
     private Screen createConfigScreen(Screen parent) {
