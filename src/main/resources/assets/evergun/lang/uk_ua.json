@@ -23,6 +23,6 @@
   "evergun.config.quick_shot": "Уввімкнути §9Швидкостріл Shot",
   "evergun.config.magazine_expansion": "Уввімкнути §eРезерв",
 
-  "evergun.config.enable_evergun": "Enable EVERgun?",
-  "evergun.config.enable_potiongun" : "Enable Potiongun?"
+  "evergun.config.enable_evergun": "Уввімкнути EVERgun?",
+  "evergun.config.enable_potiongun" : "Уввімкнути Potiongun?"
 }
