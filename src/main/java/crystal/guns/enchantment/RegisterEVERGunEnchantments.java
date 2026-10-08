@@ -16,7 +16,6 @@ public class RegisterEVERGunEnchantments {
     protected static void frost(RegistryWrapper<Item> itemRegistry, FabricDynamicRegistryProvider.Entries entries) {
         if (ENCHANTMENT_KEYS.containsKey(EnchantmentKeys.FROST)) {
             final TagKey<Item> itemTagKey = GunTags.EVERGUN_COMPATIBLE;
-
             entries.add(EnchantmentKeys.FROST, Enchantment.builder(
                             Enchantment.definition(
                                     itemRegistry.getOrThrow(itemTagKey),
@@ -36,7 +35,6 @@ public class RegisterEVERGunEnchantments {
     protected static void decay(RegistryWrapper<Item> itemRegistry, FabricDynamicRegistryProvider.Entries entries) {
         if (EnchantmentKeys.ENCHANTMENT_KEYS.containsKey(EnchantmentKeys.DECAY)) {
             final TagKey<Item> itemTagKey = GunTags.EVERGUN_COMPATIBLE;
-
             entries.add(EnchantmentKeys.DECAY, Enchantment.builder(
                             Enchantment.definition(
                                     itemRegistry.getOrThrow(itemTagKey),

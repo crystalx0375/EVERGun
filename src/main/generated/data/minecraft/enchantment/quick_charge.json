@@ -15,6 +15,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#evergun:enchantable/compatible/all",
+  "supported_items": "#evergun:enchantable/crossbow_all",
   "weight": 1
 }

@@ -33,7 +33,7 @@ public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
         RegisterEVERGunEnchantments.decay(i, e);
 
         modify(e, Enchantments.POWER, Enchantment.definition(
-                i.getOrThrow(ALL_COMPATIBLE),
+                i.getOrThrow(BOW_ALL),
                 1,
                 5,
                 Enchantment.constantCost(20),
@@ -42,7 +42,7 @@ public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
                 AttributeModifierSlot.MAINHAND
         ));
         modify(e, Enchantments.PUNCH, Enchantment.definition(
-                i.getOrThrow(EVERGUN_COMPATIBLE),
+                i.getOrThrow(BOW_EVERGUN),
                 1,
                 2,
                 Enchantment.constantCost(20),
@@ -51,7 +51,7 @@ public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
                 AttributeModifierSlot.MAINHAND
         ));
         modify(e, Enchantments.FLAME, Enchantment.definition(
-                i.getOrThrow(EVERGUN_COMPATIBLE),
+                i.getOrThrow(BOW_EVERGUN),
                 1,
                 1,
                 Enchantment.constantCost(20),
@@ -60,7 +60,7 @@ public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
                 AttributeModifierSlot.MAINHAND
         ));
         modify(e, Enchantments.PIERCING, Enchantment.definition(
-                i.getOrThrow(EVERGUN_COMPATIBLE),
+                i.getOrThrow(CROSSBOW_EVERGUN),
                 1,
                 4,
                 Enchantment.constantCost(20),
@@ -69,7 +69,7 @@ public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
                 AttributeModifierSlot.MAINHAND
         ));
         modify(e, Enchantments.QUICK_CHARGE, Enchantment.definition(
-                i.getOrThrow(ALL_COMPATIBLE),
+                i.getOrThrow(CROSSBOW_ALL),
                 1,
                 3,
                 Enchantment.constantCost(20),
