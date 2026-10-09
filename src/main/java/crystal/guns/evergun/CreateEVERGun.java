@@ -52,7 +52,7 @@ public class CreateEVERGun extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 
-        if (!EnchantmentsConfig.get().enableEVERgun) {
+        if (!EnchantmentsConfig.get().enableEVERGun) {
             return TypedActionResult.fail(user.getStackInHand(hand));
         }
 

@@ -55,7 +55,7 @@ public class CreatePotionGun extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!EnchantmentsConfig.get().enablePotiongun) {
+        if (!EnchantmentsConfig.get().enablePotionGun) {
             return TypedActionResult.fail(user.getStackInHand(hand));
         }
 
