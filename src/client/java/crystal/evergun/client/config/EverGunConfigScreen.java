@@ -160,8 +160,8 @@ public class EverGunConfigScreen extends Screen {
             boolean v
     ) {
         final int bottomButtonWidth = 100;
-        final int doneX = widthCenter - 120;
-        final int cancelX = widthCenter + 20;
+        final int doneX = widthCenter + 20;
+        final int cancelX = widthCenter - 120;
         final int bottomY = height - 35;
         final int bottomButtonHeight = 20;
 
@@ -212,8 +212,8 @@ public class EverGunConfigScreen extends Screen {
             int mouseY
     ) {
         final int bottomButtonWidth = 100;
-        final int doneX = widthCenter - 120;
-        final int cancelX = widthCenter + 20;
+        final int doneX = widthCenter + 20;
+        final int cancelX = widthCenter - 120;
         final int bottomY = height - 35;
         final int bottomButtonHeight = 20;
 
