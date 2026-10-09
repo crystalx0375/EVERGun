@@ -6,6 +6,8 @@ import crystal.guns.config.EnchantmentsConfig;
 import crystal.guns.datagen.GunTags;
 import crystal.guns.evergun.EverGunSettings;
 import crystal.guns.potiongun.PotionGunSettings;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.item.Item;
@@ -19,10 +21,34 @@ import crystal.guns.evergun.EverGunSettings;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.client.gui.widget.CheckboxWidget;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.util.Identifier;
+
 
 public class EverGunConfigScreen extends Screen {
 
     private final Screen parent;
+
+    private static final Identifier DECAY_ICON =
+            Guns.id("textures/gui/icons/decay.png");
+
+    private static final Identifier FROSTBITE_ICON =
+            Guns.id("textures/gui/icons/frostbite.png");
+
+    private static final Identifier CATALYST_ICON =
+            Guns.id("textures/gui/icons/catalyst.png");
+
+    private static final Identifier SHRAPNEL_ICON =
+            Guns.id("textures/gui/icons/shrapnel.png");
+
+    private static final Identifier QUICK_SHOT_ICON =
+            Guns.id("textures/gui/icons/quickshot.png");
+
+    private static final Identifier RESERVE_ICON =
+            Guns.id("textures/gui/icons/reserve.png");
+
+    private static final Identifier BG =
+            Guns.id("textures/gui/icons/bg.png");
 
     private boolean enableEVERgun;
     private boolean decay;
@@ -33,6 +59,7 @@ public class EverGunConfigScreen extends Screen {
     private boolean shrapnel;
     private boolean quickShot;
     private boolean magazineExpansion;
+
     public EverGunConfigScreen(Screen parent) {
         super(Text.translatable("evergun.config.title"));
         this.parent = parent;
@@ -71,49 +98,70 @@ public class EverGunConfigScreen extends Screen {
         int bottomGap = 10;
         int bottomButtonY = this.height - 30;
 
+        int doneX = this.width / 2 - 120;
+        int cancelX = this.width / 2 + 20;
 
-        int doneX = this.width / 2 - bottomButtonWidth + bottomGap / 2;
-        int cancelX = this.width / 2 - bottomButtonWidth - bottomGap / 2;
+        int bottomY = this.height - 35;
 
         int border = 2;
+        int bottomButtonHeight = 20;
 
         // region Done
-        addDrawableChild(
-                ButtonWidget.builder(
-                                Text.translatable("gui.done"),
+        ButtonWidget doneButton = ButtonWidget.builder(
+
+                                Text.empty(),
                                 button -> saveConfig()
                         )
-                        .dimensions(doneX - 50, bottomButtonY + 19, 100, 12)
-                        .build()
-        );
-        //endregion
+                        .dimensions(
+                                doneX,
+                                bottomY,
+                                bottomButtonWidth,
+                                bottomButtonHeight
+                        )
+                        .build();
+
+                        doneButton.setAlpha(0.0f);
+
+                        addDrawableChild(doneButton);
+        // endregion
 
         // region Cancel
-        addDrawableChild(
-                ButtonWidget.builder(
-                                Text.translatable("gui.cancel"),
-                                button -> client.setScreen(parent)
-                        )
-                        .dimensions(cancelX + 150, bottomButtonY + 19, 100, 12)
-                        .build()
-        );
-        //endregion
+        ButtonWidget cancelButton = ButtonWidget.builder(
+
+                        Text.empty(),
+                        button -> client.setScreen(parent)
+                )
+                .dimensions(
+                        cancelX,
+                        bottomY,
+                        bottomButtonWidth,
+                        bottomButtonHeight
+                )
+                .build();
+
+        cancelButton.setAlpha(0.0f);
+
+        addDrawableChild(cancelButton);
+        // endregion
 
         // region EVERgun
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                        getEnableEVERgunText(),
-                        button -> {
-                            enableEVERgun = !enableEVERgun;
-                            button.setMessage(getEnableEVERgunText());
-
-                        }
-                )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_evergun.tooltip")))
-                        .dimensions(
-                                leftPanelX + (panelWidth - buttonWidth) / 2, panelY + 35,
-                                buttonWidth,
-                                buttonHeight
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
+                        )
+                        .pos(leftPanelX + 132, panelY + 35
+                        )
+                        .checked(enableEVERgun)
+                        .callback((checkbox, checked) -> {
+                            enableEVERgun = checked;
+                        })
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_evergun.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
@@ -144,19 +192,23 @@ public class EverGunConfigScreen extends Screen {
 
         // region Frostbite
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnableFrostbiteText(),
-                                button -> {
-                                    frostbite = !frostbite;
-                                    button.setMessage(getEnableFrostbiteText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_frostbite.tooltip")))
-                        .dimensions(
-                                leftPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 95,
-                                buttonWidth,
-                                buttonHeight)
+                        .pos(leftPanelX + 110, panelY + 95
+                        )
+                        .checked(frostbite)
+                        .callback((checkbox, checked) -> {
+                            frostbite = checked;
+                        })
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_frostbite.tooltip"
+                                        )
+                                )
+                        )
                         .build()
         );
         //endregion
@@ -164,19 +216,22 @@ public class EverGunConfigScreen extends Screen {
 
         // region Potiongun
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnablePotiongunText(),
-                                button -> {
-                                    enablePotiongun = !enablePotiongun;
-                                    button.setMessage(getEnablePotiongunText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_potiongun.tooltip")))
-                        .dimensions(
-                                rightPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 35,
-                                buttonWidth,
-                                buttonHeight
+                        .pos(rightPanelX + 132, panelY + 35
+                        )
+                        .checked(enablePotiongun)
+                        .callback((checkbox, checked) -> {
+                            enablePotiongun = checked;
+                        })
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_potiongun.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
@@ -184,19 +239,20 @@ public class EverGunConfigScreen extends Screen {
 
         // region Catalyst
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnableCatalystText(),
-                                button -> {
-                                    catalyst = !catalyst;
-                                    button.setMessage(getEnableCatalystText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_catalyst.tooltip")))
-                        .dimensions(
-                                rightPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 65,
-                                buttonWidth,
-                                buttonHeight
+                        .pos(rightPanelX + 110, panelY + 65
+                        )
+                        .checked(catalyst)
+                        .callback((checkbox, checked) -> catalyst = checked)
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_catalyst.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
@@ -204,19 +260,20 @@ public class EverGunConfigScreen extends Screen {
 
         // region Shrapnel
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnableShrapnelText(),
-                                button -> {
-                                    shrapnel = !shrapnel;
-                                    button.setMessage(getEnableShrapnelText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_shrapnel.tooltip")))
-                        .dimensions(
-                                rightPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 95,
-                                buttonWidth,
-                                buttonHeight
+                        .pos(rightPanelX + 110, panelY + 95
+                        )
+                        .checked(shrapnel)
+                        .callback((checkbox, checked) -> shrapnel = checked)
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_shrapnel.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
@@ -224,19 +281,22 @@ public class EverGunConfigScreen extends Screen {
 
         // region QuickShot
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnableQuickShotText(),
-                                button -> {
-                                    quickShot = !quickShot;
-                                    button.setMessage(getEnableQuickShotText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_quick_shot.tooltip")))
-                        .dimensions(
-                                rightPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 125,
-                                buttonWidth,
-                                buttonHeight
+                        .pos(rightPanelX + 110, panelY + 125
+                        )
+                        .checked(quickShot)
+                        .callback((checkbox, checked) -> {
+                            quickShot = checked;
+                        })
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_quick_shot.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
@@ -244,39 +304,52 @@ public class EverGunConfigScreen extends Screen {
 
         // region Reserve
         addDrawableChild(
-                net.minecraft.client.gui.widget.ButtonWidget.builder(
-                                getEnableReserveText(),
-                                button -> {
-                                    magazineExpansion = !magazineExpansion;
-                                    button.setMessage(getEnableReserveText());
-                                }
+                CheckboxWidget.builder(
+                                Text.empty(),
+                                this.textRenderer
                         )
-                        .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_reserve.tooltip")))
-                        .dimensions(
-                                rightPanelX + (panelWidth - buttonWidth) / 2,
-                                panelY + 155,
-                                buttonWidth,
-                                buttonHeight
+                        .pos(rightPanelX + 110, panelY + 155
+                        )
+                        .checked(magazineExpansion)
+                        .callback((checkbox, checked) -> {
+                            magazineExpansion = checked;
+                        })
+                        .tooltip(
+                                Tooltip.of(
+                                        Text.translatable(
+                                                "evergun.config.enable_reserve.tooltip"
+                                        )
+                                )
                         )
                         .build()
         );
         //endregion
     }
-
     @Override
-    public void render(
-            net.minecraft.client.gui.DrawContext context,
-            int mouseX, int mouseY, float delta
+    public void renderBackground(
+            DrawContext context,
+            int mouseX,
+            int mouseY,
+            float delta
     ) {
-
         context.fill(
                 0,
                 0,
                 this.width,
                 this.height,
-                0x66000000
+                0x55000000
         );
+    }
 
+    @Override
+    public void render(
+            DrawContext context,
+            int mouseX, int mouseY, float delta
+    ) {
+
+        // region Background
+        drawCustomBackground(context);
+        // endregion
 
         // region Main title
         context.drawCenteredTextWithShadow(
@@ -303,6 +376,15 @@ public class EverGunConfigScreen extends Screen {
         int border = 2;
         // endregion
 
+        int everToggleX = leftPanelX + 15;
+        int everToggleY = panelY + 35;
+        int everToggleWidth = 150;
+        int everToggleHeight = 20;
+
+        int potToggleX = rightPanelX + 15;
+        int potToggleY = panelY + 35;
+        int potToggleWidth = 150;
+        int potToggleHeight = 20;
 
         // region Item stacks
         final ItemStack evergunStack =
@@ -311,7 +393,6 @@ public class EverGunConfigScreen extends Screen {
         final ItemStack potiongunStack =
                 new ItemStack(PotionGunSettings.GUN);
         // endregion
-
 
         // region Left panel border
         context.fill(
@@ -356,7 +437,7 @@ public class EverGunConfigScreen extends Screen {
         );
         // endregion
 
-
+//region Icons
         // region Icon of EVERgun
         context.drawItem(
                 evergunStack,
@@ -365,7 +446,6 @@ public class EverGunConfigScreen extends Screen {
         );
         // endregion
 
-
         // region Icon of Potiongun
         context.drawItem(
                 potiongunStack,
@@ -373,6 +453,251 @@ public class EverGunConfigScreen extends Screen {
                 panelY + 5
         );
         // endregion
+
+        // region Decay icon
+        drawGuiIcon(
+                context,
+                DECAY_ICON,
+                leftPanelX + 35,
+                panelY + 65
+        );
+        // endregion
+
+        // region Decay icon
+        drawGuiIcon(
+                context,
+                FROSTBITE_ICON,
+                leftPanelX + 35,
+                panelY + 95
+        );
+        // endregion
+
+        // region Catalyst icon
+        drawGuiIcon(
+                context,
+                CATALYST_ICON,
+                rightPanelX + 35,
+                panelY + 65
+        );
+        // endregion
+
+        // region Shrapnel icon
+        drawGuiIcon(
+                context,
+                SHRAPNEL_ICON,
+                rightPanelX + 35,
+                panelY + 95
+        );
+        // endregion
+
+        // region QuickShot icon
+        drawGuiIcon(
+                context,
+                QUICK_SHOT_ICON,
+                rightPanelX + 35,
+                panelY + 125
+        );
+        // endregion
+
+        // region Reserve icon
+        drawGuiIcon(
+                context,
+                RESERVE_ICON,
+                rightPanelX + 35,
+                panelY + 155
+        );
+        // endregion
+
+// endregion
+
+
+
+        // region EVERgunConfigButton
+        boolean everHovered =
+                mouseX >= everToggleX &&
+                        mouseX <= everToggleX + everToggleWidth &&
+                        mouseY >= everToggleY &&
+                        mouseY <= everToggleY + everToggleHeight;
+
+        int everBorderColor;
+
+        if (enableEVERgun) {
+            everBorderColor = 0xFF00FFFF;
+        } else {
+            everBorderColor = 0xFFFFFFFF;
+        }
+
+        if (everHovered) {
+            everBorderColor = 0xFFFFFF55;
+        }
+
+        context.fill(
+                everToggleX - 1,
+                everToggleY - 1,
+                everToggleX + everToggleWidth + 1,
+                everToggleY + everToggleHeight + 1,
+                everBorderColor
+        );
+
+        context.fill(
+                everToggleX,
+                everToggleY,
+                everToggleX + everToggleWidth,
+                everToggleY + everToggleHeight,
+                0xFF000000
+        );
+        //endregion
+
+
+
+        //region PotionGunConfigButton
+        boolean potHovered =
+                mouseX >= potToggleX &&
+                        mouseX <= potToggleX + potToggleWidth &&
+                        mouseY >= potToggleY &&
+                        mouseY <= potToggleY + potToggleHeight;
+
+        int potBorderColor;
+
+        if (enablePotiongun) {
+            potBorderColor = 0xFF00FFFF;
+        } else {
+            potBorderColor = 0xFFFFFFFF;
+        }
+
+        if (potHovered) {
+            potBorderColor = 0xFFFFFF55;
+        }
+
+        context.fill(
+                potToggleX - 1,
+                potToggleY - 1,
+                potToggleX + potToggleWidth + 1,
+                potToggleY + potToggleHeight + 1,
+                potBorderColor
+        );
+
+        context.fill(
+                potToggleX,
+                potToggleY,
+                potToggleX + potToggleWidth,
+                potToggleY + potToggleHeight,
+                0xFF000000
+        );
+        //endregion
+
+        
+        
+        int bottomButtonWidth = 100;
+        int bottomButtonHeight = 20;
+
+        int doneX = this.width / 2 - 120;
+        int cancelX = this.width / 2 + 20;
+
+        int bottomY = this.height - 35;
+
+        int toggleTextArea = 110;
+        int doneBorderColor = 0;
+        int cancelBorderColor = 0;
+        
+
+        
+        // region Done custom button
+        boolean doneHovered =
+                mouseX >= doneX - 1 &&
+                        mouseX <= doneX + bottomButtonWidth + 1 &&
+                        mouseY >= bottomY - 1 &&
+                        mouseY <= bottomY + bottomButtonHeight + 1;
+
+        if (doneHovered) {
+            doneBorderColor = 0xFF00FF00;
+        } else {
+            doneBorderColor = 0xFFFFFFFF;
+        }
+
+        context.fill(
+                doneX - 1,
+                bottomY - 1,
+                doneX + bottomButtonWidth + 1,
+                bottomY + bottomButtonHeight + 1,
+                doneBorderColor
+        );
+
+        context.fill(
+                doneX,
+                bottomY,
+                doneX + bottomButtonWidth,
+                bottomY + bottomButtonHeight,
+                0xFF000000
+        );
+
+        context.drawCenteredTextWithShadow(
+                this.textRenderer,
+                Text.translatable("gui.done"),
+                doneX + bottomButtonWidth / 2,
+                bottomY + (bottomButtonHeight - this.textRenderer.fontHeight) / 2,
+                0xFFFFFF
+        );
+        // endregion
+
+        // region Cancel custom button
+        boolean cancelHovered =
+                mouseX >= cancelX - 1 &&
+                        mouseX <= cancelX + bottomButtonWidth + 1 &&
+                        mouseY >= bottomY - 1 &&
+                        mouseY <= bottomY + bottomButtonHeight + 1;
+
+        if (cancelHovered) {
+            cancelBorderColor = 0xFFFF0000;
+        } else {
+            cancelBorderColor = 0xFFFFFFFF;
+        }
+
+        context.fill(
+                cancelX - 1,
+                bottomY - 1,
+                cancelX + bottomButtonWidth + 1,
+                bottomY + bottomButtonHeight + 1,
+                cancelBorderColor
+        );
+
+        context.fill(
+                cancelX,
+                bottomY,
+                cancelX + bottomButtonWidth,
+                bottomY + bottomButtonHeight,
+                0xFF000000
+        );
+
+        context.drawCenteredTextWithShadow(
+                this.textRenderer,
+                Text.translatable("gui.cancel"),
+                cancelX + bottomButtonWidth / 2,
+                bottomY + (bottomButtonHeight - this.textRenderer.fontHeight) / 2,
+                0xFFFFFF
+        );
+        // endregion
+
+        //region EVERGUN WEAPON ENABLE NAHUY
+        context.drawCenteredTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.enable_evergun"),
+                everToggleX + toggleTextArea / 2,
+                everToggleY + (everToggleHeight - this.textRenderer.fontHeight) / 2,
+                0xFFFFFF
+        );
+        //endregion
+
+        //region POTION WEAPON ENABLE BLYAT
+        context.drawCenteredTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.enable_potiongun"),
+                potToggleX + toggleTextArea / 2,
+                potToggleY + (potToggleHeight - this.textRenderer.fontHeight) / 2,
+                0xFFFFFF
+        );
+        //endregion
+
 
 
         // region EVERgun title
@@ -385,7 +710,6 @@ public class EverGunConfigScreen extends Screen {
         );
         // endregion
 
-
         // region Potiongun title
         context.drawCenteredTextWithShadow(
                 this.textRenderer,
@@ -395,6 +719,7 @@ public class EverGunConfigScreen extends Screen {
                 0xFFFFFF
         );
         // endregion
+
 
 
         // region Widgets
@@ -411,6 +736,89 @@ public class EverGunConfigScreen extends Screen {
                 0xAAAAAA
         );
         // endregion
+
+        // region Frostbite text
+        context.drawTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.frostbite"),
+                leftPanelX + 55,
+                panelY + 100,
+                0xAAAAAA
+        );
+        //endregion
+
+        // region Catalyst text
+        context.drawTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.catalyst"),
+                rightPanelX + 55,
+                panelY + 70,
+                0xAAAAAA
+        );
+        // endregion
+
+        // region Shrapnel text
+        context.drawTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.shrapnel"),
+                rightPanelX + 55,
+                panelY + 100,
+                0xAAAAAA
+        );
+        // endregion
+
+        // region QuickShot text
+        context.drawTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.quick_shot"),
+                rightPanelX + 55,
+                panelY + 130,
+                0xAAAAAA
+        );
+        // endregion
+
+        // region Reserve text
+        context.drawTextWithShadow(
+                this.textRenderer,
+                Text.translatable("evergun.config.magazine_expansion"),
+                rightPanelX + 55,
+                panelY + 160,
+                0xAAAAAA
+        );
+        // endregion
+    }
+
+    private void drawGuiIcon (
+            DrawContext context,
+            Identifier texture,
+            int x,
+            int y
+    ) {
+        context.drawTexture(
+                texture,
+                x,
+                y,
+                0,
+                0,
+                16,
+                16,
+                16,
+                16
+        );
+    }
+
+    private void drawCustomBackground(DrawContext context) {
+        context.drawTexture(
+                BG,
+                0,
+                0,
+                0.0f,
+                0.0f,
+                this.width,
+                this.height,
+                1920,
+                1080
+        );
     }
 
     private Text getEnableEVERgunText() {
