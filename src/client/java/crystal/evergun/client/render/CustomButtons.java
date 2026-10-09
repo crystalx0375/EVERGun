@@ -20,7 +20,7 @@ public class CustomButtons {
                 .pos(x, y)
                 .checked(initial)
                 .callback((checkbox, checked) -> changed.accept(checked))
-                .tooltip(Tooltip.of(Text.translatable("evergun.config.enable_evergun.tooltip")))
+                .tooltip(Tooltip.of(Text.translatable("evergun.config.enable.tooltip")))
                 .build();
     }
 }

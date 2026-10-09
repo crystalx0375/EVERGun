@@ -28,5 +28,6 @@
 
   "gui.done": "Save",
   "gui.cancel": "Cancel",
-  "evergun.config.enable_evergun.tooltip": "Disables/Enables weapon"
+
+  "evergun.config.enable.tooltip": "Disables/Enables"
 }

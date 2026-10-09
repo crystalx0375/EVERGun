@@ -142,7 +142,7 @@ public class Panel {
 
         context.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.enable_evergun"),
+                Text.translatable("evergun.config.enable.tooltip"),
                 leftX + 55, LEFT_Y + (LEFT_HEIGHT - textRenderer.fontHeight) / 2,
                 0xFFFFFF
         );
@@ -260,7 +260,7 @@ public class Panel {
         final boolean hovered = mouseX >= rightX
                 && mouseX <= rightX + RIGHT_WIDTH
                 && mouseY >= RIGHT_Y
-                && mouseY <= RIGHT_Y + RIGHT_WIDTH;
+                && mouseY <= RIGHT_Y + RIGHT_HEIGHT;
 
         int color;
 
