@@ -29,12 +29,5 @@
   "gui.done": "Save",
   "gui.cancel": "Cancel",
 
-  "evergun.config.enable_evergun.tooltip": "Disables/Enables weapon",
-  "evergun.config.enable_decay.tooltip": "Disables/Enables enchantment",
-  "evergun.config.enable_frostbite.tooltip": "Disables/Enables enchantment",
-  "evergun.config.enable_potiongun.tooltip": "Disables/Enables weapon",
-  "evergun.config.enable_catalyst.tooltip": "Disables/Enables enchantment",
-  "evergun.config.enable_shrapnel.tooltip": "Disables/Enables enchantment",
-  "evergun.config.enable_quick_shot.tooltip": "Disables/Enables enchantment",
-  "evergun.config.enable_reserve.tooltip": "Disables/Enables enchantment"
+  "evergun.config.enable_evergun.tooltip": "Disables/Enables weapon"
 }
