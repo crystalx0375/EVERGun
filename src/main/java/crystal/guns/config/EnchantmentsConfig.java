@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class EnchantmentsConfig {
-    private static int VERSION = 1;
+    private static final int VERSION = 1;
     private static EnchantmentsConfig instance;
 
     public final boolean decay;
@@ -18,8 +18,8 @@ public class EnchantmentsConfig {
     public final boolean shrapnel;
     public final boolean quickShot;
     public final boolean magazineExpansion;
-    public final boolean enableEVERgun;
-    public final boolean enablePotiongun;
+    public final boolean enableEVERGun;
+    public final boolean enablePotionGun;
 
 
     private EnchantmentsConfig () {
@@ -34,8 +34,8 @@ public class EnchantmentsConfig {
         shrapnel = config.getOrDefault("shrapnel", true);
         quickShot = config.getOrDefault("quick_shot", true);
         magazineExpansion = config.getOrDefault("magazine_expansion", true);
-        enableEVERgun = config.getOrDefault("enable_evergun", true);
-        enablePotiongun = config.getOrDefault("enable_potiongun", true);
+        enableEVERGun = config.getOrDefault("enable_evergun", true);
+        enablePotionGun = config.getOrDefault("enable_potiongun", true);
 
     }
 

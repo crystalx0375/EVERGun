@@ -25,8 +25,8 @@ public class DisabledGUN {
         EnchantmentsConfig config = EnchantmentsConfig.get();
 
         boolean disabled =
-                (stack.isOf(EverGunSettings.GUN) && !config.enableEVERgun)
-                        || (stack.isOf(PotionGunSettings.GUN) && !config.enablePotiongun);
+                (stack.isOf(EverGunSettings.GUN) && !config.enableEVERGun)
+                        || (stack.isOf(PotionGunSettings.GUN) && !config.enablePotionGun);
 
         if (!disabled) {
             return;

@@ -12,17 +12,10 @@
   "enchantment.evergun.disabled": "[Отключено]",
 
   "evergun.config.title": "ЗАЧАРОВАНИЯ",
+  "gui.done": "Save",
+  "gui.cancel": "Cancel",
 
-  "evergun.config.everganus": "Стреломет",
-  "evergun.config.frostbite": "Включить §3амедление",
-  "evergun.config.decay": "Включить §8Разложение",
-
-  "evergun.config.potionganus": "Зельемет",
-  "evergun.config.catalyst": "Включить §7Катализатор",
-  "evergun.config.shrapnel": "Включить §2Шрапнель",
-  "evergun.config.quick_shot": "Включить §9Скорострел",
-  "evergun.config.magazine_expansion": "Включить §eРезерв",
-
-  "evergun.config.enable_evergun": "Включить EVERgun?",
-  "evergun.config.enable_potiongun" : "Включить Potiongun?"
+  "evergun.config.enable.tooltip": "Disables/Enables",
+  "evergun.config.weapon.tooltip": " weapon",
+  "evergun.config.enchantment.tooltip": " enchantment"
 }
