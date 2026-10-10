@@ -15,12 +15,12 @@ public class CustomButtons {
      * @param initial initial boolean
      * @param changed boolean at the end of changing
      */
-    public static CheckboxWidget drawCheckBox(int x, int y, boolean initial, Consumer<Boolean> changed, TextRenderer textRenderer) {
+    public static CheckboxWidget drawCheckBox(int x, int y, boolean initial, Consumer<Boolean> changed, TextRenderer textRenderer, Text text) {
         return CheckboxWidget.builder(Text.empty(), textRenderer)
                 .pos(x, y)
                 .checked(initial)
                 .callback((checkbox, checked) -> changed.accept(checked))
-                .tooltip(Tooltip.of(Text.translatable("evergun.config.enable.tooltip")))
+                .tooltip(Tooltip.of(Text.translatable("evergun.config.enable.tooltip").append(text)))
                 .build();
     }
 }

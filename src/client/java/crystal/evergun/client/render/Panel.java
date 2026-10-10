@@ -77,21 +77,21 @@ public class Panel {
     public static void appendLeftPanelText(DrawContext context, int leftPanelX, TextRenderer textRenderer) {
         context.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.everganus"),
+                Text.translatable("item.evergun.evergun"),
                 leftPanelX + PANEL_WIDTH / 2, PANEL_Y + 10,
                 0xFFFFFF
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.decay"),
+                Text.translatable("enchantment.evergun.decay"),
                 leftPanelX + 55, PANEL_Y + 70,
                 0xAAAAAA
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.frostbite"),
+                Text.translatable("enchantment.evergun.frost"),
                 leftPanelX + 55, PANEL_Y + 100,
                 0xAAAAAA
         );
@@ -142,7 +142,7 @@ public class Panel {
 
         context.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.enable.tooltip"),
+                Text.translatable("item.evergun.evergun"),
                 leftX + 55, LEFT_Y + (LEFT_HEIGHT - textRenderer.fontHeight) / 2,
                 0xFFFFFF
         );
@@ -213,35 +213,35 @@ public class Panel {
     public static void appendRightPanelText(DrawContext context, int rightPanelX, TextRenderer textRenderer) {
         context.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.potionganus"),
+                Text.translatable("item.evergun.potiongun"),
                 rightPanelX + PANEL_WIDTH / 2, PANEL_Y + 10,
                 0xFFFFFF
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.catalyst"),
+                Text.translatable("enchantment.evergun.catalyst"),
                 rightPanelX + 55, PANEL_Y + 70,
                 0xAAAAAA
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.shrapnel"),
+                Text.translatable("enchantment.evergun.shrapnel"),
                 rightPanelX + 55, PANEL_Y + 100,
                 0xAAAAAA
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.quick_shot"),
+                Text.translatable("enchantment.evergun.quick_shot"),
                 rightPanelX + 55, PANEL_Y + 130,
                 0xAAAAAA
         );
 
         context.drawTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.magazine_expansion"),
+                Text.translatable("enchantment.evergun.magazine_expansion"),
                 rightPanelX + 55, PANEL_Y + 160,
                 0xAAAAAA
         );
@@ -292,7 +292,7 @@ public class Panel {
 
         context.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.translatable("evergun.config.enable_potiongun"),
+                Text.translatable("item.evergun.potiongun"),
                 rightX + 55, RIGHT_Y + (RIGHT_HEIGHT - textRenderer.fontHeight) / 2,
                 0xFFFFFF
         );

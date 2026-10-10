@@ -12,22 +12,10 @@
   "enchantment.evergun.disabled": "[Disabled]",
 
   "evergun.config.title": "ENCHANTMENTS & WEAPONS",
-
-  "evergun.config.everganus" : "EVERGun",
-  "evergun.config.decay" : " §8Decay",
-  "evergun.config.frostbite" : "§3Frostbite",
-
-  "evergun.config.potionganus" : "Potion Gun",
-  "evergun.config.catalyst" : "§7Catalyst",
-  "evergun.config.shrapnel" : "§2Shrapnel",
-  "evergun.config.quick_shot" : "§9Quick Shot",
-  "evergun.config.magazine_expansion" : "§eReserve",
-
-  "evergun.config.enable_evergun": "EVERgun",
-  "evergun.config.enable_potiongun" : "Potiongun",
-
   "gui.done" : "Save",
   "gui.cancel" : "Cancel",
 
-  "evergun.config.enable.tooltip": "Disables/Enables"
+  "evergun.config.enable.tooltip": "Disables/Enables",
+  "evergun.config.weapon.tooltip": " weapon",
+  "evergun.config.enchantment.tooltip": " enchantment"
 }

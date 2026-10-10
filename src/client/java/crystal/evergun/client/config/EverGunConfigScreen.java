@@ -36,7 +36,7 @@ public class EverGunConfigScreen extends Screen {
         super(Text.translatable("evergun.config.title"));
         this.screen = screen;
 
-        EnchantmentsConfig config = EnchantmentsConfig.get();
+        final EnchantmentsConfig config = EnchantmentsConfig.get();
 
         enableEVERGun = config.enableEVERGun;
         decay = config.decay;
@@ -49,6 +49,7 @@ public class EverGunConfigScreen extends Screen {
         magazineExpansion = config.magazineExpansion;
     }
 
+    @SuppressWarnings("java:S1192")
     @Override
     protected void init() {
         super.init();
@@ -63,44 +64,52 @@ public class EverGunConfigScreen extends Screen {
         addDrawableChild(CustomButtons.drawCheckBox(
                 leftPanelX + 132,panelY + 36,
                 enableEVERGun, v -> enableEVERGun = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.weapon.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 leftPanelX + 110,panelY + 65,
                 decay, v -> decay = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 leftPanelX + 110,panelY + 95,
                 frostbite, v -> frostbite = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
 
         // PotionGun checkboxes
         addDrawableChild(CustomButtons.drawCheckBox(
                 rightPanelX + 132,panelY + 36,
                 enablePotionGun, v -> enablePotionGun = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.weapon.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 rightPanelX + 110,panelY + 65,
                 catalyst, v -> catalyst = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 rightPanelX + 110,panelY + 95,
                 shrapnel, v -> shrapnel = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 rightPanelX + 110,panelY + 125,
                 quickShot, v -> quickShot = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
         addDrawableChild(CustomButtons.drawCheckBox(
                 rightPanelX + 110,panelY + 155,
                 magazineExpansion, v -> magazineExpansion = v,
-                textRenderer
+                textRenderer,
+                Text.translatable("evergun.config.enchantment.tooltip")
         ));
 
         addDrawableChild(drawFooterButtons(screen, client, this.width / 2, this.height, true));
