@@ -12,10 +12,10 @@
   "enchantment.evergun.disabled": "[Відключено]",
 
   "evergun.config.title": "ЗАЧАРУВАННЯ",
-  "gui.done": "Save",
-  "gui.cancel": "Cancel",
+  "gui.done": "Зберегти",
+  "gui.cancel": "Відміна",
 
-  "evergun.config.enable.tooltip": "Disables/Enables",
-  "evergun.config.weapon.tooltip": " weapon",
-  "evergun.config.enchantment.tooltip": " enchantment"
+  "evergun.config.enable.tooltip": "Вмикає/Вимикає",
+  "evergun.config.weapon.tooltip": " зброю",
+  "evergun.config.enchantment.tooltip": " зачарування"
 }

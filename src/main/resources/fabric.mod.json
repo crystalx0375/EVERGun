@@ -3,7 +3,8 @@
 	"id": "evergun",
 	"version": "${version}",
 	"name": "EVERGun",
-	"description": "A simple mod which adds an arrow gun into the game with 2 enchantments and potion gun with 4 enchantments",
+
+	"description": "§eEN§r:\nBoth weapons are fireproof and cannot burn in lava.\n§3 ARROW GUN:§r\n§5 NEW ENCHANTMENTS:§r\n§3 Frostbite§r — Briefly applies Slowness on hit\n§8 Decay§r — Briefly applies Wither on hit\n§7 COMPATIBLE ENCHANTMENTS:§r\nFlame, Piercing, Power, \nPunch I, Mending, Unbreaking, \nQuick Charge. \nPunch II has the same effect as Punch I.\n§3 POTION GUN:§r\n§5  NEW ENCHANTMENTS:§r\n§7 Catalyst§r [4 levels] — Increases potion effect duration\n§2 Shrapnel§r [3 levels] — Deals heavy damage to nearby non-player entities when a potion hits. Damage scales with level\n§9 Quick Shot§r [5 levels] — Increases rate of fire\n§e Reserve§r — Adds an extra magazine slot\n§7 COMPATIBLE ENCHANTMENTS:§r\nQuick Charge, Power, Mending, \nUnbreaking\n\n§eRU§r:\n Оба оружия не горят в лаве.\n§3 СТРЕЛОМЁТ:\n§5 НОВЫЕ ЗАЧАРОВАНИЯ:§r\n§3 Frostbite§r (Замедление) — Ненадолго накладывает замедление при попадании\n§8 Decay§r (Разложение) — Ненадолго накладывает иссушение при попадании\n§7 СОВМЕСТИМЫЕ ЗАЧАРОВАНИЯ:§r\nПламя, Пронзающая стрела, \nБыстрая перезарядка, Сила, \nОтбрасывание I, Починка, Прочность. \nОтбрасывание II действует так же, как I.\n§3 ЗЕЛЬЕМЁТ:§r\n§5 НОВЫЕ ЗАЧАРОВАНИЯ:§r\n§7 Catalyst§r (Катализатор) [4 уровня] — Увеличивает длительность эффектов зелий\n§2 Shrapnel§r (Шрапнель) [3 уровня] — При попадании зелья наносит сильный урон существам поблизости, кроме игроков. Урон зависит от уровня\n§9 Quick Shot§r (Скорострел) [5 уровней] — Увеличивает скорострельность\n§e Reserve§r (Резерв) — Добавляет дополнительный слот магазина\n§7 СОВМЕСТИМЫЕ ЗАЧАРОВАНИЯ:§r\nБыстрая перезарядка, Сила, \nПочинка, Прочность",
 	"authors": [
         "EVER2east", "Crystal", "lowdefqwop"
 	],
